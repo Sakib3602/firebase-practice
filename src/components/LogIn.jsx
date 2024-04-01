@@ -2,6 +2,7 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from "firebase/auth";
 import app from "./firebase.init";
 import { GithubAuthProvider } from "firebase/auth";
+import { useState } from "react";
 
 const LogIn = () => {
 
@@ -54,6 +55,7 @@ const LogIn = () => {
        
       
         const errorMessage = error.message;
+        
         console.log(errorMessage)
         
 
@@ -62,6 +64,7 @@ const LogIn = () => {
       })
     }
 
+    const [eye,setEye] = useState(true)
     
 
 
@@ -102,11 +105,12 @@ const LogIn = () => {
                 </label>
                 <input
                 name="password"
-                  type="password"
+                  type={ eye ? 'password' : 'text'}
                   placeholder="password"
                   className="input input-bordered"
                   required
                 />
+                <button onClick={()=> setEye(!eye)} className="btn btn-success mt-3">Show password</button>
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
